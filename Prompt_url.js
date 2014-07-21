@@ -1,22 +1,18 @@
 function Window() {
-  this.url = Url;
+  this.windowProperties = "height=450px,width=400px,location=no,menubar=no,scrollbars=no,status=no,toolbar=no,resizable=no" ;
+  this.str = "(ftp:\/\/\/|http:\/\/|https:\/\/)(w{3}|[a-zA-Z]*)\.([a-zA-Z]*|\d)\.([a-zA-Z]*|\d|\.([a-zA-Z]*|\d)|\/([a-zA-Z]*|\d))" ;    
 }
 
-Window.prototype.validate = function() {
-  if((!this.url) || (!patt.test(this.url))) {
-    alert("Please Enter the URL Correctly : Hint http:\/\/ or ftp :\/\/");
-    location.reload();
-  }
-  else {
-    this.openWindow();
-  }
+Window.prototype.isNotValid = function() {
+  var patt = new RegExp(this.str); 
+  return ((!Url) || (!patt.test(Url)));  
 };
 
 Window.prototype.openWindow = function() {
   var blocked = false;
   //handling POPUP
   try {
-    var newWindow = window.open(this.url,"_blank",windowProperties);
+    var newWindow = window.open(Url,"_blank",this.windowProperties);
     if(newWindow == null) {
       blocked = true;
     }
@@ -33,11 +29,15 @@ Window.prototype.openWindow = function() {
 function createWindow() {
   return new Window();
 }
-var windowProperties = "height=450px,width=400px,location=no,menubar=no,scrollbars=no,status=no,toolbar=no,resizable=no" ,
-    str = "(ftp:\/\/\/|http:\/\/|https:\/\/)(w{3}|[a-zA-Z]*)\.([a-zA-Z]*|\d)\.([a-zA-Z]*|\d|\.([a-zA-Z]*|\d)|\/([a-zA-Z]*|\d))",
-    patt = new RegExp(str);
-    Url = prompt("Enter the Url You want to navigate");     
+
+var Url = prompt("Enter the Url You want to navigate");
 window.onload = function() {
   windo = createWindow();
-  windo.validate();
+  if(!windo.isNotValid()) {
+    windo.openWindow();
+  }
+  else {
+    alert("Please Enter the URL Correctly : Hint http:\/\/ or ftp :\/\/");
+    location.reload();
+  }
 };  
