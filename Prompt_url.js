@@ -1,10 +1,10 @@
 function Window() {
-  this.windowProperties = "height=450px,width=400px,location=no,menubar=no,scrollbars=no,status=no,toolbar=no,resizable=no" ;
-  this.str = "(ftp:\/\/\/|http:\/\/|https:\/\/)(w{3}|[a-zA-Z]*)\.([a-zA-Z]*|\d)\.([a-zA-Z]*|\d|\.([a-zA-Z]*|\d)|\/([a-zA-Z]*|\d))" ;    
+  this.WINDOW_PROPERTIES = "height=450px,width=400px,location=no,menubar=no,scrollbars=no,status=no,toolbar=no,resizable=no" ;
+  this.STR = "(ftp:\/\/\/|http:\/\/|https:\/\/)(w{3}|[a-zA-Z]*)\.([a-zA-Z]*|\d)\.([a-zA-Z]*|\d|\.([a-zA-Z]*|\d)|\/([a-zA-Z]*|\d))" ;    
 }
 
 Window.prototype.isNotValid = function() {
-  var patt = new RegExp(this.str); 
+  var patt = new RegExp(this.STR); 
   return ((!Url) || (!patt.test(Url)));  
 };
 
@@ -12,7 +12,7 @@ Window.prototype.openWindow = function() {
   var blocked = false;
   //handling POPUP
   try {
-    var newWindow = window.open(Url,"_blank",this.windowProperties);
+    var newWindow = window.open(Url,"_blank",this.WINDOW_PROPERTIES);
     if (newWindow == null) {
       blocked = true;
     }
