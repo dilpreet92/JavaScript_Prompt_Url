@@ -13,14 +13,14 @@ Window.prototype.openWindow = function() {
   //handling POPUP
   try {
     var newWindow = window.open(Url,"_blank",this.windowProperties);
-    if(newWindow == null) {
+    if (newWindow == null) {
       blocked = true;
     }
   }
   catch(ex) {
     blocked = true;
   }
-  if(blocked) {
+  if (blocked) {
     alert("PLease Allow PoP Up to display");
     location.reload();
   }
@@ -33,7 +33,7 @@ function createWindow() {
 var Url = prompt("Enter the Url You want to navigate");
 window.onload = function() {
   windo = createWindow();
-  if(!windo.isNotValid()) {
+  if (!windo.isNotValid()) {
     windo.openWindow();
   }
   else {
