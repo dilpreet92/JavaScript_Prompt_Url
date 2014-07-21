@@ -12,8 +12,8 @@ Window.prototype.openWindow = function() {
   var blocked = false;
   //handling POPUP
   try {
-    var newWindow = window.open(Url,"_blank",this.WINDOW_PROPERTIES);
-    if (newWindow == null) {
+    var newWindow = window.open(Url, "_blank", this.WINDOW_PROPERTIES);
+    if (!newWindow) {
       blocked = true;
     }
   }
