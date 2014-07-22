@@ -4,8 +4,8 @@ function Window() {
 }
 
 Window.prototype.isNotValid = function() {
-  var patt = new RegExp(this.STR); 
-  return ((!Url) || (!patt.test(Url)));  
+  var PATT = new RegExp(this.STR); 
+  return ((!Url) || (!PATT.test(Url)));  
 };
 
 Window.prototype.openWindow = function() {
